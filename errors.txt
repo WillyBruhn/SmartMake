@@ -1,0 +1,4 @@
+main.cpp:4:1: error: ‘unordered_map’ does not name a type
+ unordered_map
+ ^
+make: *** [main.o] Fehler 1

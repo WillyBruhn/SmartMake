@@ -1,0 +1,20 @@
+#!/bin/sh
+# 
+# author: Willy Bruhn
+# use this instead of calling "make"
+# The first error that occurs during compilation is parsed as a googlesearch.
+#-----------------------------------------------------------------------------
+
+make 2> errors.txt
+line=$(head -n 1 errors.txt)
+
+if [ -s errors.txt ]
+then
+	searchQuery=${line#*"error:"}
+	echo $searchQuery
+	searchQuery=$(echo $searchQuery | tr -s ' ' | tr ' ' '+')
+
+	firefox http://www.google.com/search?hl=en#q=$searchQuery
+else
+	echo "no errors"
+fi
